@@ -7,10 +7,11 @@ This comprehensive guide helps you set up and run your Flask application effecti
 - Python 3.x (https://www.python.org/downloads/)
 - Git version control system (https://www.git-scm.com/)
 
-**1. Clone the Repository**
+
 
 ```bash
-git clone https://github.com/manishpg83/flask.git  # Replace with your actual Git repository URL
+**1. Clone the Repository**
+git clone https://github.com/manishpg83/flask.git  
 
 
 2. Create a Virtual Environment (Recommended)
