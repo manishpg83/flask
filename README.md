@@ -1,19 +1,20 @@
-# flask
-Getting Started with Flask Project
+# Flask Project: Getting Started
 
-This README provides a comprehensive guide to setting up and running your Flask application.
+This comprehensive guide helps you set up and run your Flask application effectively.
 
-Prerequisites:
+**Prerequisites:**
 
-Python 3.x (https://www.python.org/downloads/)
-Git version control system (https://git-scm.com/)
-
-1. Clone the Repository:
-git clone https://github.com/manishpg83/flask.git
-This command will download the project files from the specified Git repository to your local machine.
+- Python 3.x (https://www.python.org/downloads/)
+- Git version control system (https://www.git-scm.com/)
 
 
-2. Create a Virtual Environment (Recommended):
+
+```bash
+**1. Clone the Repository**
+git clone https://github.com/manishpg83/flask.git  
+
+
+2. Create a Virtual Environment (Recommended)
 Creating a virtual environment helps isolate project dependencies from your system-wide Python installation. This can prevent conflicts and ensure consistency. Here's an example using venv:
 
 python -m venv venv
