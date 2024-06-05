@@ -13,7 +13,7 @@ git clone https://github.com/manishpg83/flask.git
 This command will download the project files from the specified Git repository to your local machine.
 
 
-2. Create a Virtual Environment (Recommended):
+2. Create a Virtual Environment (Recommended)
 Creating a virtual environment helps isolate project dependencies from your system-wide Python installation. This can prevent conflicts and ensure consistency. Here's an example using venv:
 
 python -m venv venv
