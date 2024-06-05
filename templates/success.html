@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+<div class="text">Teacher Data</div>
+<div class="filters">
+  <label for="filter_iit">
+    <input type="checkbox" id="filter_iit" /> Can Teach IIT
+  </label>
+  <label for="filter_neet">
+    <input type="checkbox" id="filter_neet" /> Can Teach NEET
+  </label>
+  <label for="filter_gender">
+    Gender:
+    <select id="filter_gender">
+      <option value="">-select-</option>
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+    </select>
+  </label>
+</div>
+<div class="table-container">
+  <table id="myTable" class="display">
+    <thead>
+      <tr>
+        <th>Teacher ID</th>
+        <th>Mobile Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Date</th>
+        <th>Age</th>
+        <th>Is Teacher</th>
+        <th>Can Work with OUS</th>
+        <th>Gender</th>
+        <th>City</th>
+        <th>City Type</th>
+        <th>Is Married</th>
+        <th>Has Kids</th>
+        <th>Kids Age Range</th>
+        <th>Teacher Type</th>
+        <th>Can Teach Personal Student</th>
+        <th>Can Teach IIT</th>
+        <th>IIT Options</th>
+        <th>Can Teach NEET</th>
+        <th>NEET Options</th>
+        <th>Can Teach UPSC</th>
+        <th>UPSC Options</th>
+        <th>Can Teach Banking</th>
+        <th>Banking Options</th>
+        <th>Can Teach Personally</th>
+        <th>Personally Options</th>
+        <th>Can Teach CAT</th>
+        <th>CAT Options</th>
+        <th>Can Teach GMAT</th>
+        <th>GMAT Options</th>
+        <th>Laptop</th>
+        <th>Connected with OUS</th>
+        <th>Batch Capacity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for teacher in teachers %}
+      <tr>
+        <td>{{ teacher.teacher_id }}</td>
+        <td>{{ teacher.mobile_number }}</td>
+        <td>{{ teacher.first_name }}</td>
+        <td>{{ teacher.last_name }}</td>
+        <td>{{ teacher.date }}</td>
+        <td>{{ teacher.age }}</td>
+        <td>{{ teacher.is_teacher }}</td>
+        <td>{{ teacher.can_work_with_ous }}</td>
+        <td>{{ teacher.gender }}</td>
+        <td>{{ teacher.city }}</td>
+        <td>{{ teacher.city_type }}</td>
+        <td>{{ teacher.is_married }}</td>
+        <td>{{ teacher.has_kids }}</td>
+        <td>{{ teacher.kids_age_range }}</td>
+        <td>{{ teacher.teacher_type }}</td>
+        <td>{{ teacher.can_teach_personal_student }}</td>
+        <td>{{ teacher.can_teach_iit }}</td>
+        <td>{{ teacher._iit_options }}</td>
+        <td>{{ teacher.can_teach_neet }}</td>
+        <td>{{ teacher._neet_options }}</td>
+        <td>{{ teacher.can_teach_upsc }}</td>
+        <td>{{ teacher._upsc_options }}</td>
+        <td>{{ teacher.can_teach_banking }}</td>
+        <td>{{ teacher._banking_options }}</td>
+        <td>{{ teacher.can_teach_personally }}</td>
+        <td>{{ teacher._personally_options }}</td>
+        <td>{{ teacher.can_teach_cat }}</td>
+        <td>{{ teacher._cat_options }}</td>
+        <td>{{ teacher.can_teach_gmat }}</td>
+        <td>{{ teacher._gmat_options }}</td>
+        <td>{{ teacher.laptop }}</td>
+        <td>{{ teacher.connected_with_ous }}</td>
+        <td>{{ teacher.batch_capacity }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).ready(function () {
+    var table = $("#myTable").DataTable({
+      scrollX: true,
+    });
+
+    $("#filter_iit, #filter_neet, #filter_gender").on("change", function () {
+      var filter_iit = $("#filter_iit").is(":checked");
+      var filter_neet = $("#filter_neet").is(":checked");
+      var filter_gender = $("#filter_gender").val();
+      table
+        .column(16)
+        .search(filter_iit ? "true" : "", true, false)
+        .draw();
+      table
+        .column(18)
+        .search(filter_neet ? "true" : "", true, false)
+        .draw();
+      table.column(8).search(filter_gender, true, false).draw();
+    });
+  });
+</script>
+{% endblock %}

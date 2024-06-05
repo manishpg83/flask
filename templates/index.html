@@ -1,0 +1,76 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <div class="p-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-6">
+        <div
+          class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5"
+        >
+          <div class="flex justify-between mb-6">
+            <div>
+              <div class="flex items-center mb-1">
+                <div class="text-2xl font-semibold">{{user_count }}</div>
+              </div>
+              <div class="text-sm font-medium text-gray-400">Users</div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5"
+        >
+          <div class="flex justify-between mb-4">
+            <div>
+              <div class="flex items-center mb-1">
+                <div class="text-2xl font-semibold">{{teacher_count }}</div>
+                <div
+                  class="p-1 rounded bg-emerald-500/10 text-emerald-500 text-[12px] font-semibold leading-none ml-2"
+                ></div>
+              </div>
+              <div class="text-sm font-medium text-gray-400">Teachers</div>
+            </div>
+          </div>
+          <a
+            href="/teacherlist"
+            class="text-[#f84525] font-medium text-sm hover:text-red-800"
+            >View</a
+          >
+        </div>
+        <div
+          class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5"
+        >
+          <div class="flex justify-between mb-4">
+            <div>
+              <div class="flex items-center mb-1">
+                <div class="text-2xl font-semibold">{{not_updated_teachers }}</div>
+                <div
+                  class="p-1 rounded bg-emerald-500/10 text-emerald-500 text-[12px] font-semibold leading-none ml-2"
+                ></div>
+              </div>
+              <div class="text-sm font-medium text-gray-400">Non-updated Teachers</div>
+            </div>
+          </div>
+          <a
+            href="/edit_teacher"
+            class="text-[#f84525] font-medium text-sm hover:text-red-800"
+            >View</a
+          >
+        </div>
+      </div>
+    </div>
+   
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <script>
+        Swal.fire({
+          title: "{{ messages[0] }}",
+          icon: "error",
+          confirmButtonText: "OK"
+        });
+      </script>
+    {% endif %}
+  {% endwith %}
+{% endblock %}

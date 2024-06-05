@@ -1,0 +1,714 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+
+<div class="text">Update Teacher</div>
+<div class="bg-gray-100">
+  <form method="POST" class="teacher-form" id="teacher-form">
+    <div class="grid grid-cols-2 gap-4 py-10 m-10">
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Teacher ID</legend>
+        <select name="teacher_id" id="teacher_id" class="w-full mt-1">
+          <option value="">--SELECT--</option>
+        </select>
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Mobile Number</legend>
+        <input
+          type="text"
+          name="mobile_number"
+          id="mobile_number"
+          class="w-full mt-1"
+          readonly
+        />
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">First Name</legend>
+        <input
+          type="text"
+          name="first_name"
+          id="first_name"
+          class="w-full mt-1"
+          readonly
+        />
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Last Name</legend>
+        <input
+          type="text"
+          name="last_name"
+          id="last_name"
+          class="w-full mt-1"
+          readonly
+        />
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Date</legend>
+        <input type="date" name="date" id="date" class="w-full mt-1" readonly />
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Age</legend>
+        <input type="number" name="age" id="age" class="w-full mt-1" readonly />
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Can you work with US ?</legend>
+        <label
+          ><input
+            type="radio"
+            name="can_work_with_ous"
+            value="yes"
+            id="can_work_with_ous_yes"
+          />
+          Yes</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="can_work_with_ous"
+            value="no"
+            id="can_work_with_ous_no"
+          />
+          No</label
+        >
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Gender</legend>
+        <label
+          ><input type="radio" name="gender" value="M" id="gender_m" />
+          Male</label
+        >
+        <label
+          ><input type="radio" name="gender" value="F" id="gender_f" />
+          Female</label
+        >
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">City</legend>
+        <select name="city" id="city" class="w-full mt-1">
+          <option>--SELECT--</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+          <option value="4">Option 4</option>
+          <option value="5">Other</option>
+        </select>
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">City Type</legend>
+        <label
+          ><input
+            type="radio"
+            name="city_type"
+            value="Tier1"
+            id="city_type_tier1"
+          />
+          Tier 1</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="city_type"
+            value="Tier2"
+            id="city_type_tier2"
+          />
+          Tier 2</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="city_type"
+            value="Tier3"
+            id="city_type_tier3"
+          />
+          Tier 3</label
+        >
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Are you Married ?</legend>
+        <label
+          ><input
+            type="radio"
+            name="is_married"
+            value="true"
+            id="is_married_yes"
+          />
+          Yes</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="is_married"
+            value="false"
+            id="is_married_no"
+          />
+          No</label
+        >
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Do you have Kids ?</legend>
+        <label
+          ><input type="radio" name="has_kids" value="true" id="has_kids_yes" />
+          Yes</label
+        >
+        <label
+          ><input type="radio" name="has_kids" value="false" id="has_kids_no" />
+          No</label
+        >
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">
+          If yes, what is the age range of your Kids ?
+        </legend>
+        <select name="kids_age_range" id="kids_age_range" class="w-full mt-1">
+          <option>--SELECT--</option>
+          <option value="0-5 years">0-5 years</option>
+          <option value="6-10 years">6-10 years</option>
+          <option value="11-15 years">11-15 years</option>
+          <option value="16-18 years">16-18 years</option>
+          <option value="Other">Other</option>
+        </select>
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Teacher Type</legend>
+        <select name="teacher_type" id="teacher_type" class="w-full mt-1">
+          <option>--SELECT--</option>
+          <option value="Kindergarten">Kindergarten</option>
+          <option value="School">School</option>
+          <option value="College">College</option>
+          <option value="Professor">Professor</option>
+          <option value="Coaching">Coaching</option>
+        </select>
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Can you teach Personal ?</legend>
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_personal_student"
+            value="true"
+            id="can_teach_personal_student"
+          />
+          Yes</label
+        >
+      </fieldset>
+      <fieldset class="p-2 mb-4 border rounded">
+        <legend class="font-bold">Are you Teacher ?</legend>
+        <label
+          ><input
+            type="checkbox"
+            name="is_teacher"
+            id="is_teacher"
+            value="true"
+          />
+          Yes</label
+        >
+      </fieldset>
+      <fieldset class="p-2 border rounded">
+        <legend class="font-bold">Have Laptop</legend>
+        <label
+          ><input type="checkbox" name="laptop" value="true" id="laptop" />
+          Yes</label
+        >
+      </fieldset>
+      <fieldset class="p-2 border rounded">
+        <legend class="font-bold">Connected with US</legend>
+        <label
+          ><input
+            type="checkbox"
+            name="connected_with_ous"
+            value="true"
+            id="connected_with_ous"
+          />
+          Yes</label
+        >
+      </fieldset>
+      <fieldset class="p-2 border rounded">
+        <legend class="font-bold">Batch Capacity (1 - 100)</legend>
+        <input
+          type="number"
+          name="batch_capacity"
+          id="batch_capacity"
+          class="w-full mt-1"
+        />
+      </fieldset>
+    </div>
+    <div class="grid grid-cols-3 gap-4 m-10">
+      <fieldset class="p-2 border rounded">
+        <legend class="font-bold">Can you teach IIT JEE ?</legend>
+        <label
+          ><input type="checkbox" name="can_teach_iit" value="True" />
+          Yes</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_iit_opt[]" value="Option 1" />
+          IIT Option 1</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_iit_opt[]" value="Option 2" />
+          IIT Option 2</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_iit_opt[]" value="Option 3" />
+          IIT Option 3</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_iit_opt[]" value="Option 4" />
+          IIT Option 4</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_iit_opt[]" value="Option 5" />
+          IIT Option 5</label
+        ><br />
+      </fieldset>
+
+      <fieldset class="p-2 border rounded">
+        <legend class="font-bold">Can you teach NEET ?</legend>
+        <label
+          ><input type="checkbox" name="can_teach_neet" value="True" />
+          Yes</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_neet_opt[]"
+            value="Option 1"
+          />
+          NEET Option 1</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_neet_opt[]"
+            value="Option 2"
+          />
+          NEET Option 2</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_neet_opt[]"
+            value="Option 3"
+          />
+          NEET Option 3</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_neet_opt[]"
+            value="Option 4"
+          />
+          NEET Option 4</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_neet_opt[]"
+            value="Option 5"
+          />
+          NEET Option 5</label
+        ><br />
+      </fieldset>
+
+      <fieldset class="p-2 border rounded">
+        <legend>Can you teach UPSC ?</legend>
+        <label
+          ><input type="checkbox" name="can_teach_upsc" value="True" />
+          Yes</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_upsc_opt[]"
+            value="Option 1"
+          />
+          UPSC Option 1</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_upsc_opt[]"
+            value="Option 2"
+          />
+          UPSC Option 2</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_upsc_opt[]"
+            value="Option 3"
+          />
+          UPSC Option 3</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_upsc_opt[]"
+            value="Option 4"
+          />
+          UPSC Option 4</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_upsc_opt[]"
+            value="Option 5"
+          />
+          UPSC Option 5</label
+        ><br />
+      </fieldset>
+
+      <fieldset class="p-2 border rounded">
+        <legend>Can you teach Banking ?</legend>
+        <label
+          ><input type="checkbox" name="can_teach_banking" value="True" />
+          Yes</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_banking_opt[]"
+            value="Option 1"
+          />
+          Banking Option 1</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_banking_opt[]"
+            value="Option 2"
+          />
+          Banking Option 2</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_banking_opt[]"
+            value="Option 3"
+          />
+          Banking Option 3</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_banking_opt[]"
+            value="Option 4"
+          />
+          Banking Option 4</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_banking_opt[]"
+            value="Option 5"
+          />
+          Banking Option 5</label
+        ><br />
+      </fieldset>
+
+      <fieldset class="p-2 border rounded">
+        <legend>Can you teach Personally ?</legend>
+        <label
+          ><input type="checkbox" name="can_teach_personally" value="True" />
+          Yes</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_personally_opt[]"
+            value="Option 1"
+          />
+          Personally Option 1</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_personally_opt[]"
+            value="Option 2"
+          />
+          Personally Option 2</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_personally_opt[]"
+            value="Option 3"
+          />
+          Personally Option 3</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_personally_opt[]"
+            value="Option 4"
+          />
+          Personally Option 4</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_personally_opt[]"
+            value="Option 5"
+          />
+          Personally Option 5</label
+        ><br />
+      </fieldset>
+
+      <fieldset class="p-2 border rounded">
+        <legend>Can you teach CAT ?</legend>
+        <label
+          ><input type="checkbox" name="can_teach_cat" value="True" />
+          Yes</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_cat_opt[]" value="Option 1" />
+          CAT Option 1</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_cat_opt[]" value="Option 2" />
+          CAT Option 2</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_cat_opt[]" value="Option 3" />
+          CAT Option 3</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_cat_opt[]" value="Option 4" />
+          CAT Option 4</label
+        ><br />
+        <label
+          ><input type="checkbox" name="can_teach_cat_opt[]" value="Option 5" />
+          CAT Option 5</label
+        ><br />
+      </fieldset>
+
+      <fieldset class="p-2 border rounded">
+        <legend>Can you teach GMAT ?</legend>
+        <label
+          ><input type="checkbox" name="can_teach_gmat" value="True" />
+          Yes</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_gmat_opt[]"
+            value="Option 1"
+          />
+          GMAT Option 1</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_gmat_opt[]"
+            value="Option 2"
+          />
+          GMAT Option 2</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_gmat_opt[]"
+            value="Option 3"
+          />
+          GMAT Option 3</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_gmat_opt[]"
+            value="Option 4"
+          />
+          GMAT Option 4</label
+        ><br />
+        <label
+          ><input
+            type="checkbox"
+            name="can_teach_gmat_opt[]"
+            value="Option 5"
+          />
+          GMAT Option 5</label
+        ><br />
+      </fieldset>
+    </div>
+    <div class="flex justify-center col-span-2">
+      <button
+        type="submit"
+        class="px-4 py-2 mt-0 mb-10 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+      >
+        UPDATE
+      </button>
+      <div>
+        <a href="/teacherlist" class="button">VIEW DATA</a>
+      </div>
+    </div>
+  </form>
+</div>
+<div id="message" class="hidden font-bold text-green-500">
+  Updated successfully
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#teacher_id").select2({
+      placeholder: "--SELECT--",
+      ajax: {
+        url: "/get_teacher_ids",
+        dataType: "json",
+        delay: 250,
+        data: function (params) {
+          return {
+            q: params.term,
+          };
+        },
+        processResults: function (data) {
+          return {
+            results: data.id.map(function (id) {
+              return { id: id, text: id };
+            }),
+          };
+        },
+        cache: true,
+      },
+    });
+
+    // When a teacher is selected, fetch their data
+    $("#teacher_id").on("select2:select", function (e) {
+      const teacherId = $(this).val();
+      if (teacherId) {
+        $.ajax({
+          url: "/get_teacher_data",
+          method: "GET",
+          data: { id: teacherId },
+          success: function (data) {
+            console.log(data);
+            // Parse the JSON strings in the data if necessary
+            [
+              "can_teach_neet_opt",
+              "can_teach_iit_opt",
+              "can_teach_upsc_opt",
+              "can_teach_banking_opt",
+              "can_teach_personally_opt",
+              "can_teach_cat_opt",
+              "can_teach_gmat_opt",
+            ].forEach(function (key) {
+              if (typeof data[key] === "string") {
+                data[key] = JSON.parse(data[key]);
+              }
+            });
+
+            // Populate the form fields with the fetched data
+            $("#mobile_number").val(data.mobile_number);
+            $("#first_name").val(data.first_name);
+            $("#last_name").val(data.last_name);
+            $("#date").val(data.date);
+            $("#age").val(data.age);
+            $("#is_teacher").prop("checked", data.is_teacher);
+
+            setRadioButton("can_work_with_ous", data.can_work_with_ous);
+            setRadioButton("gender", data.gender);
+            setRadioButton("city_type", data.city_type);
+            setRadioButton("is_married", data.is_married);
+            setRadioButton("has_kids", data.has_kids);
+
+            $("#city").val(data.city);
+            $("#kids_age_range").val(data.kids_age_range);
+            $("#teacher_type").val(data.teacher_type);
+            $("#laptop").prop("checked", data.laptop);
+            $("#connected_with_ous").prop("checked", data.connected_with_ous);
+            $("#batch_capacity").val(data.batch_capacity);
+            $("#can_teach_personal_student").prop(
+              "checked",
+              data.can_teach_personal_student
+            );
+
+            setCheckboxState("can_teach_iit", data.can_teach_iit);
+            setCheckboxState("can_teach_neet", data.can_teach_neet);
+            setCheckboxState("can_teach_upsc", data.can_teach_upsc);
+            setCheckboxState("can_teach_banking", data.can_teach_banking);
+            setCheckboxState("can_teach_personally", data.can_teach_personally);
+            setCheckboxState("can_teach_cat", data.can_teach_cat);
+            setCheckboxState("can_teach_gmat", data.can_teach_gmat);
+
+            setOptionsCheckboxes("can_teach_iit_opt[]", data.can_teach_iit_opt);
+            setOptionsCheckboxes(
+              "can_teach_neet_opt[]",
+              data.can_teach_neet_opt
+            );
+            setOptionsCheckboxes(
+              "can_teach_upsc_opt[]",
+              data.can_teach_upsc_opt
+            );
+            setOptionsCheckboxes(
+              "can_teach_banking_opt[]",
+              data.can_teach_banking_opt
+            );
+            setOptionsCheckboxes(
+              "can_teach_personally_opt[]",
+              data.can_teach_personally_opt
+            );
+            setOptionsCheckboxes("can_teach_cat_opt[]", data.can_teach_cat_opt);
+            setOptionsCheckboxes(
+              "can_teach_gmat_opt[]",
+              data.can_teach_gmat_opt
+            );
+
+            $('input[type="checkbox"]').trigger("change");
+          },
+        });
+      }
+    });
+
+    function setRadioButton(fieldName, value) {
+      $(`input[name='${fieldName}'][value='${value}']`).prop("checked", true);
+    }
+
+    function setCheckboxState(fieldName, value) {
+      $(`input[name='${fieldName}']`).prop("checked", value);
+    }
+
+    function setOptionsCheckboxes(fieldName, options) {
+      $(`input[name='${fieldName}']`).prop("checked", false); // Clear all checkboxes
+      if (Array.isArray(options)) {
+        options.forEach((option) => {
+          $(`input[name='${fieldName}'][value='${option}']`).prop(
+            "checked",
+            true
+          );
+        });
+      }
+    }
+
+    $("#teacher-form").on("submit", function (event) {
+      event.preventDefault();
+      var formData = $(this).serializeArray();
+      var teacherId = $("#teacher_id").val();
+      formData.push({ name: "teacher_id", value: teacherId });
+      $.ajax({
+        url: "/update_teacher",
+        method: "POST",
+        data: formData,
+        success: function (response) {
+          Swal.fire({
+            title: "Success!",
+            text: "Data updated successfully.",
+            icon: "success",
+            confirmButtonText: "OK",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "http://127.0.0.1:5002/form";
+            }
+          });
+        },
+        error: function (xhr, status, error) {
+          Swal.fire({
+            title: "Error!",
+            text: "Error updating data: " + error,
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        },
+      });
+    });
+  });
+</script>
+
+{% endblock %}

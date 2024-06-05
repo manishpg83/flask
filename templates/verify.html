@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/fonts.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Verify OTP</h2>
+      <form method="POST" action="/verify">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" class="clstextbox" required />
+        <input type="submit" class="clsbtnsubmit" value="Verify" />
+      </form>
+      <button id="resendOTP" class="btn btn-secondary" style="display: none">
+        Resend OTP
+      </button>
+      <div id="countdown"></div>
+      <div id="otpSuccessMsg" class="alert alert-success" style="display: none">
+        OTP sent successfully, please check your email.
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="errorModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="errorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorModalLabel">Error</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">{{ error_message }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <script type="text/javascript">
+      $(document).ready(function() {
+          {% for category, message in messages %}
+              {% if category == 'error' %}
+                  $('#errorModal .modal-body').text("{{ message }}");
+                  $('#errorModal').modal('show');
+              {% endif %}
+          {% endfor %}
+      });
+    </script>
+    {% endif %} {% endwith %}
+    <script>
+      $(document).ready(function () {
+        function startCountdown() {
+          var counter = 60;
+          var interval = setInterval(function () {
+            counter--;
+            $("#countdown").text("Resend in " + counter + " seconds");
+            if (counter === 0) {
+              clearInterval(interval);
+              $("#countdown").empty();
+              $("#resendOTP").show();
+              $("#resendOTP").prop("disabled", false);
+              $("#resendOTP").text("Resend OTP");
+            }
+          }, 1000);
+        }
+        $("#resendOTP").hide();
+        if (window.location.href.indexOf("/verify") > -1) {
+          startCountdown();
+          $("#otpSuccessMsg").show();
+          setTimeout(function () {
+            $("#otpSuccessMsg").hide();
+          }, 2000);
+        }
+        // Handle the resend OTP button click
+        $("#resendOTP").click(function () {
+          var resendButton = $(this);
+          if (!resendButton.prop("disabled")) {
+            resendButton.prop("disabled", true);
+            resendButton.html(
+              '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Resending...'
+            );
+            $.ajax({
+              type: "POST",
+              url: "/resend_otp",
+              success: function (data) {
+                $("#resendOTP").hide();
+                startCountdown();
+                $("#otpSuccessMsg").show();
+                setTimeout(function () {
+                  $("#otpSuccessMsg").hide();
+                }, 2000);
+              },
+              error: function (xhr, status, error) {
+                alert("Error: " + error);
+                resendButton.prop("disabled", false);
+                resendButton.html("Resend OTP");
+              },
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
