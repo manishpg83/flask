@@ -10,16 +10,18 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 from pytz import timezone
 from sqlalchemy.types import DateTime
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/flask'
-app.secret_key = "Rnq-UKhUIXBN0Kx7Y3-eB5x3MMurpLXMZQR_VvhcvtE"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.secret_key = os.getenv('SECRET_KEY')
+app.config['EMAIL_ADDRESS'] = os.getenv('EMAIL_ADDRESS')
+app.config['EMAIL_PASSWORD'] = os.getenv('EMAIL_PASSWORD')
 app.permanent_session_lifetime = timedelta(minutes=30)
-# Email configuration
-app.config['EMAIL_ADDRESS'] = 'briskbraintechnologies@gmail.com'
-app.config['EMAIL_PASSWORD'] = 'xqahytuxfkyaziqx'
 db = SQLAlchemy(app)
+
 india_timezone = timezone('Asia/Kolkata')
 
 #For User 
@@ -195,7 +197,7 @@ def verify():
             email = session['email']
             user = User.query.filter_by(email=email, otp=user_otp).first()
             if user:
-                if user.otp_expires_at > datetime.now(india_timezone):
+                if user.otp_expires_at.astimezone(india_timezone) > datetime.now(india_timezone):
                     user.verified = True
                     db.session.commit()
                     return redirect('/dashboard')
